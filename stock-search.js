@@ -4,7 +4,7 @@ const uri = "mongodb+srv://nathanielperry:lEa48UHVH3CADETV@cs20perry.xso7g.mongo
 const express = require('express');
 const app = express();
 var url = require('url');
-
+const port = process.env.PORT || 3000;
 
 const client = new MongoClient(uri, {
   serverApi: {
@@ -79,4 +79,4 @@ app.get('/process', async (req, res) => {
 
 });
 
-app.listen(8080);
+app.listen(port);
