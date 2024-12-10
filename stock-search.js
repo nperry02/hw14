@@ -24,7 +24,7 @@ formInfo += '<button type="submit">Search</button></form></body></html>';
 
 
 //View 1
-app.use((req, res, next) => {
+app.use(function(req, res, next) {
     if (req.path === '/') {
         res.send(formInfo);
     } else {
@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 });
 
 //View 2
-app.get('/process', async (req, res) => {
+app.get('/process', async function(req, res) {
     //get form info
     var qobj = url.parse(req.url, true).query;
     var search = qobj.query;
@@ -64,10 +64,13 @@ app.get('/process', async (req, res) => {
             if (items.length == 0) {
                 console.log("No " + which + " was found with that name.");
             } else {
+                var infomatiion = "";
                 items.forEach(function(item) {
                     //send to console
-                    console.log("Company: " + item.Company + "  Stock Ticker Symbol: " + item.Ticker + "  Price: " + item.Price);
+                    console.log("Company: " + item.Company + ";  Stock Ticker Symbol: " + item.Ticker + ";  Price: " + item.Price);
+                    infomatiion += "Company: " + item.Company + ";  Stock Ticker Symbol: " + item.Ticker + ";  Price: " + item.Price + "<br>";
                 });
+                res.send(infomatiion);
             }
 
         } finally {
