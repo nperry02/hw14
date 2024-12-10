@@ -1,10 +1,10 @@
-{
+
     "name": "stock-ticker-app",
     "version": "1.0.0",
     "description": "",
     "main": "stock-search.js",
     "scripts": {
-        "start": "node index.js"
+        "start": "node stock-search.js"
     },
     "engines": {
         "node": ">=14.0.0"
