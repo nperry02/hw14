@@ -60,18 +60,21 @@ app.get('/process', async function(req, res) {
             //search datatbase
             const items = await collection.find(theQuery).toArray();
 
+            var infomatiion = "";
+
             //if search is not in database
             if (items.length == 0) {
                 console.log("No " + which + " was found with that name.");
+                infomatiion = "No " + which + " was found with that name.";
             } else {
-                var infomatiion = "";
+                
                 items.forEach(function(item) {
                     //send to console
                     console.log("Company: " + item.Company + ";  Stock Ticker Symbol: " + item.Ticker + ";  Price: " + item.Price);
                     infomatiion += "Company: " + item.Company + ";  Stock Ticker Symbol: " + item.Ticker + ";  Price: " + item.Price + "<br>";
                 });
-                res.send(infomatiion);
             }
+            res.send(infomatiion);
 
         } finally {
             await client.close();
